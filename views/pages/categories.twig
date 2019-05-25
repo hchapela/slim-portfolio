@@ -1,0 +1,13 @@
+{% extends "pages/base.twig" %}
+
+{% use "pages/to_use/random_menu.twig" %}
+
+{% block content %}
+
+    {% for _categorie in categories %}
+
+        <p>{{_categorie.data1}} {{_categorie.data2}}</p>
+
+    {% endfor %}
+
+{% endblock %}
