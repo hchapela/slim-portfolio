@@ -1,4 +1,13 @@
-body
-{
-    background: #ff9999;
+footer.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.container p {
+    margin-bottom: 1.2rem;
+}
+
+.container .subtitle {
+    margin-top: 1.8rem;
 }

@@ -1,3 +1,21 @@
 {% block sidebar %}
- <button>sidebar</button>
+    <div class="block">
+        <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="{{ path_for('home') }}">
+                <img src="../assets/img/logo.png" alt="Bulma: Free, open source, & modern CSS framework based on Flexbox">
+              </a>          
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div class="navbar-menu is-primary">
+                <a href="{{ path_for('home') }}" class="navbar-item"><h3 class="is-4">Home</h1></a>
+                <a href="{{ path_for('projects') }}" class="navbar-item"><h3 class="is-4">Projects</h1></a>
+                <a href="{{ path_for('about') }}" class="navbar-item"><h3 class="is-4">About</h1></a>
+            </div
+        </nav>
+    </div>
 {% endblock %}

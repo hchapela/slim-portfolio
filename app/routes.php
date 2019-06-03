@@ -1,5 +1,7 @@
 <?php
 
+require 'admin-authentification.php';
+
 // Home
 $app
     ->get(
@@ -33,4 +35,58 @@ $app
         }
     )
     ->setName('categories')
+;
+
+// Admin
+$app
+    ->get(
+        '/admin',
+        function($request, $response)
+        {
+            $viewData = [];
+            return $this->view->render($response, 'pages/admin.twig', $viewData);
+        }
+    )
+    ->setName('admin')
+;
+
+$app
+    ->post(
+        '/admin',
+        function($request, $response)
+        {
+            $viewData = [];
+            $auth = new AdminAuthentification($this->db);
+
+            return $this->view->render($response, 'pages/admin.twig', $viewData);
+        }
+    )
+;
+
+// About
+$app
+    ->get(
+        '/about',
+        function($request, $response)
+        {
+            // View data
+            $viewData = [];
+            return $this->view->render($response, 'pages/about.twig', $viewData);
+        }
+    )
+    ->setName('about')
+;
+
+// Projects
+$app
+    ->get(
+        '/projects',
+        function($request, $response)
+        {
+            // View data
+            $viewData = [];
+            return $this->view->render($response, 'pages/projects.twig', $viewData);
+        }
+    )
+    ->setName('projects')
 ;

@@ -26,3 +26,10 @@ $container['db'] = function($container)
 
     return $pdo;
 };
+
+// 404
+$container['notFoundHandler'] = function($container) {
+    return function($request, $response) use($container) {
+        return $container['view']->render($response, 'pages/error.twig');
+    };
+};

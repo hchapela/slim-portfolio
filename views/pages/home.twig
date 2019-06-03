@@ -1,11 +1,37 @@
 {% extends "pages/base.twig" %}
 
+{# Menu #}
 {% use "pages/to_use/random_menu.twig" %}
 
 {% block content %}
-    <h1>Home</h1>
-    <p class="important">
-        Welcome on my awesome homepage.
-    </p>
-     <a href="{{ path_for('categories') }}">categories</a>
+<section class="section">
+    <div class="block">
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">Hugo Chapelain</h1>
+                    <h2 class="subtitle is-size-6 has-text-grey-light">Freelance developer & UI designer</h2>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="block">
+        <div class="container">
+            <p>I’m <span class="has-text-weight-bold">Hugo</span>, a 20 years old student <a href="https://www.hetic.net/">@Hetic</a> and an <span class="has-text-weight-bold">Interface designer</span> who likes to bang his head on 🤘songs while working.</p>
+
+            <p>I’m looking for an <span class="has-text-weight-bold">intership</span>, want to <a href="/about">talk</a> about it ?</p>
+            <a href="#" class="button is-primary is-medium">Get in touch</a>
+        </div>
+    </div>
+</section>
+
+<section class="section is-large">
+    <div class="container">
+        
+    </div>
+</section>
+
+
+    {# <a href="{{ path_for('categories') }}">categories</a> #}
 {% endblock %}

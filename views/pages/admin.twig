@@ -1,0 +1,58 @@
+{% extends "pages/base.twig" %}
+
+{# Menu #}
+{% use "pages/to_use/random_menu.twig" %}
+
+{% block content %}
+
+<section class="section">
+
+    <h1 class="title">Admin pannel</h1>
+    <form action="#" method="POST">
+    {# Login #}
+      <div class="field">
+          <p class="control has-icons-left has-icons-right">
+              <input 
+              class="input"
+              type="text"
+              placeholder="Login"
+              name="login"
+              id="login"
+              value="{{ login }}"
+              >
+              <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+              </span>
+              <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+              </span>
+          </p>
+      </div>
+      {# Password #}
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input"
+          type="password"
+          placeholder="Password"
+          name="password"
+          id="password"
+          value="{{ password }}"
+          >
+          <span class="icon is-small is-left">
+            <i class="fas fa-lock"></i>
+          </span>
+        </p>
+      </div>
+      {# Submit #}
+      <div class="field">
+        <p class="control">
+          <button class="button is-primary" type="submit">
+            Login
+          </button>
+        </p>
+      </div>
+    </form>
+</section>
+
+
+{% endblock %}
