@@ -7,10 +7,6 @@ class AdminAuthentification {
         // Get PDO
         $this->db = $_db;
         // Save error or success messages
-        echo '<pre>';
-        print_r("working");
-        echo '</pre>';
-
         $this->messages = [
             'error' => [],
             'success' => [],
@@ -34,39 +30,45 @@ class AdminAuthentification {
 
         // Handle errors
         if(empty($login)) {
-            $messages['error'][] = 'Missing username';
+            $this->messages['error'][] = 'Missing username';
         }
         if(empty($password)) {
-            $messages['error'][] = 'Missing password';
+            $this->messages['error'][] = 'Missing password';
         }
 
         // Success
-        if(empty($messages['error']))
+        if(empty($this->messages['error']))
         {
             // Look for login in DB
             $prepare = $this->db->prepare('
                 SELECT * from users
-                WHERE login = ":login"
+                WHERE login = :login
             ');
             $prepare->bindValue('login', $login);
-
             $result = $prepare->execute();
 
-            echo '<pre>';
-            print_r($result);
-            echo '</pre>';
+            $result = $prepare->fetch();
+            // Check if password are the same
+            if($result->password == $_POST['password']) {
+                $this->successLogin();
+            }
+            else {
+                $this->failLogin();
+            }
 
-            echo '<pre>';
-            print_r($_POST);
-            echo '</pre>';
-
-            $messages['success'][] = 'Successfully connected';
-
+            // Reset login and password
             $_POST['login'] = '';
             $_POST['password'] = '';
         }
-        echo '<pre>';
-        print_r($messages);
-        echo '</pre>';
+        
+    }
+
+    public function successLogin() {
+        $_SESSION['authentification'] = "authentified";
+        $this->messages['success'][] = 'Successfully connected';
+    }
+
+    public function failLogin() {
+        $this->messages['error'][] = 'Wrong password';
     }
 }

@@ -55,12 +55,35 @@ $app
         '/admin',
         function($request, $response)
         {
+            session_start();
             $viewData = [];
             $auth = new AdminAuthentification($this->db);
-
-            return $this->view->render($response, 'pages/admin.twig', $viewData);
+            // Check if session is authentified
+            echo '<pre>';
+            print_r($_SESSION);
+            echo '</pre>';
+            if($_SESSION['authentification'] == "authentified") {
+                return $response->withRedirect('pages/dashboard.twig', 301);
+            } else {
+                return $this->view->render($response, 'pages/admin.twig', $viewData);
+            }
         }
     )
+;
+
+// Dashboard
+$app
+    ->get(
+        '/dashboard',
+        function($request, $response)
+        {
+            // View data
+            $viewData = [];
+
+            return $this->view->render($response, 'pages/dashboard.twig', $viewData);
+        }
+    )
+    ->setName('dashboard')
 ;
 
 // About
