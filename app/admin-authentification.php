@@ -11,6 +11,7 @@ class AdminAuthentification {
             'error' => [],
             'success' => [],
         ];
+        // set authentification to false by default
 
         // Form sent
         if(!empty($_POST)) {
@@ -48,8 +49,14 @@ class AdminAuthentification {
             $result = $prepare->execute();
 
             $result = $prepare->fetch();
+
+            // Exit if SQL request empty
+            if(empty($result)) {
+                $this->failLogin();
+            }
+
             // Check if password are the same
-            if($result->password == $_POST['password']) {
+            else if($result->password == $_POST['password']) {
                 $this->successLogin();
             }
             else {
@@ -64,7 +71,7 @@ class AdminAuthentification {
     }
 
     public function successLogin() {
-        $_SESSION['authentification'] = "authentified";
+        $this->state = true;
         $this->messages['success'][] = 'Successfully connected';
     }
 

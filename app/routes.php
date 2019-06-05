@@ -59,11 +59,9 @@ $app
             $viewData = [];
             $auth = new AdminAuthentification($this->db);
             // Check if session is authentified
-            echo '<pre>';
-            print_r($_SESSION);
-            echo '</pre>';
-            if($_SESSION['authentification'] == "authentified") {
-                return $response->withRedirect('pages/dashboard.twig', 301);
+            if(isset($auth->state)) {
+                // redirect to another page
+                // session with ok
             } else {
                 return $this->view->render($response, 'pages/admin.twig', $viewData);
             }

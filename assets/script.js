@@ -1,15 +1,98 @@
-console.log('hey')
+(function e(t, n, r) {
+  function s(o, u) {
+    if (!n[o]) {
+      if (!t[o]) {
+        var a = typeof require == "function" && require;
+        if (!u && a) return a(o, !0);
+        if (i) return i(o, !0);
+        throw new Error("Cannot find module '" + o + "'");
+      }
 
-// Hamburger
-
-const $burgers = document.querySelectorAll('.navbar-burger')
-// Iterate through burgers
-if($burgers.length > 0) {
-    for($_burger of $burgers) {
-        $_burger.addEventListener('click', () => {
-            const $menu = document.querySelector('.navbar-menu')
-            $_burger.classList.toggle('is-active')
-            $menu.classList.toggle('is-active')
-        })
+      var f = n[o] = {
+        exports: {}
+      };
+      t[o][0].call(f.exports, function (e) {
+        var n = t[o][1][e];
+        return s(n ? n : e);
+      }, f, f.exports, e, t, n, r);
     }
-}
+
+    return n[o].exports;
+  }
+
+  var i = typeof require == "function" && require;
+
+  for (var o = 0; o < r.length; o++) s(r[o]);
+
+  return s;
+})({
+  1: [function (require, module, exports) {
+    class Card {
+      constructor(_card) {
+        // initialization
+        this.initSize(_card);
+        this.initImage(_card);
+        this.initLabel(_card); // Interaction
+
+        this.expandImage(_card);
+      }
+
+      initSize(_card) {
+        _card.style.width = _card.dataset.width;
+        _card.style.height = _card.dataset.height;
+      }
+
+      initImage(_card) {
+        const cardImage = document.createElement('img');
+        cardImage.classList.add('card__Picture');
+        cardImage.setAttribute('src', _card.dataset.src);
+
+        _card.appendChild(cardImage);
+      }
+
+      initLabel(_card) {
+        const cardLabel = document.createElement('div');
+        cardLabel.classList.add('card__Label'); // init Title
+
+        const cardLabelTitle = document.createElement('p');
+        cardLabelTitle.classList.add('card__Label__Title');
+        cardLabelTitle.innerText = _card.dataset.title; // init Dimensions
+
+        const cardLabelDimensions = document.createElement('p');
+        cardLabelDimensions.classList.add('card__Label__Dimensions');
+        cardLabelDimensions.innerText = `${_card.dataset.width}x ${_card.dataset.height}`; // Import in html
+
+        _card.appendChild(cardLabel);
+
+        const $label = _card.querySelector('.card__Label');
+
+        $label.appendChild(cardLabelTitle);
+        $label.appendChild(cardLabelDimensions);
+      }
+
+      expandImage(_card) {
+        let isOpened = false;
+
+        _card.addEventListener('click', () => {
+          if (isOpened) {
+            _card.classList.remove('is-opened');
+
+            isOpened = false;
+          } else {
+            _card.classList.add('is-opened');
+
+            isOpened = true;
+          }
+        });
+      }
+
+    }
+
+    const $gallery = document.querySelector('.js-gallery');
+    const $cards = document.querySelectorAll('.js-card');
+
+    for (const card of $cards) {
+      new Card(card);
+    }
+  }, {}]
+}, {}, [1]);

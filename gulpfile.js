@@ -29,10 +29,10 @@ gulp.task('scripts', () => {
         .pipe(browserify())
         .pipe(babel())
         .pipe(concat('script.js'))
-        .pipe(gulp.dest('assets'))
+        .pipe(gulp.dest('assets/'))
         .pipe(rename({ suffix: '.min' }))
         .pipe(uglify())
-        .pipe(gulp.dest('assets'));
+        .pipe(gulp.dest('assets/'));
 });
 
 gulp.task('styles', () => {
@@ -60,9 +60,9 @@ gulp.task('images', () => {
 gulp.task('run',['scripts','styles','images']);
 
 gulp.task('watch',() => {
-    gulp.watch('src/assets/img/**/*',['images']);
-    gulp.watch('src/assets/scss/**/*.scss',['styles']);
-    gulp.watch('src/assets/scripts/**/*.js',['scripts']);
+    gulp.watch('assets/src/img/**/*',['images']);
+    gulp.watch('assets/src/scss/**/*.scss',['styles']);
+    gulp.watch('assets/src/scripts/**/*.js',['scripts']);
 });
 
 gulp.task('default',['watch']);
