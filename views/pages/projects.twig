@@ -5,9 +5,34 @@
 
 {% block content %}
 <section class="section">
-    {# Introduction #}
+    {# Projects #}
     <div class="container">
-       
+        <h1 class="title is-capitalized is-size-3 has-text-weight-bold">My projects</h1>
+        
+            {# Each experience #}
+            {% for _project in projects %}
+                <a href="{{ _project.link }}" target="_blank">
+                    <div class="card">
+                    {# Image #}
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                              <img src="{{ _project.thumbnail }}" alt="Placeholder image">
+                            </figure>
+                        </div>
+                    {# Content #}
+                        <div class="card-content">
+                          <div class="media">
+                            <div class="media-content">
+                              <p class="title is-4">{{ _project.project }}</p>
+                            </div>
+                          </div>
+                          <div class="content">
+                            <p>{{ _project.explainations }}</p>
+                          </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
     </div>
 </section>
 

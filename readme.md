@@ -1,14 +1,14 @@
-# Proj_Slim
-
-
+# Slim portfolio
+[Github repository](https://github.com/hchapela/slim-portfolio)
 
 ## What is this ?
-This is a Slim/Twig template to use in light project with a mecanic of blocks.
+This is a school project in order to learn to use Slim PHP, Twig & a Front framework.
 
 ## Features
 
-* gestion of page with blocks and expend
+* Back Office to add new experiences and projects
 * Use of a database
+* Secure connect system to admin pannel
 
 ## Install in local
 
@@ -16,6 +16,12 @@ You will first need to import your composers :
 ```
 composer install
 ```
+
+Then if you want to use gulp :
+```
+npm i
+```
+
 
 Then
 ```php
@@ -25,46 +31,20 @@ Import in PhpMyAdmin the database slim_try.sql
 // Connect your database in app/settings.php 
 $settings['db'] = [];
 $settings['db']['host'] = 'localhost';
-$settings['db']['port'] = '';
+$settings['db']['port'] = '8889';
 $settings['db']['user'] = 'root';
-$settings['db']['pass'] = '';
-$settings['db']['name'] = 'slim_try';
+$settings['db']['pass'] = 'root';
+$settings['db']['name'] = 'portfolio-slim';
 ```
 
+## How to access to admin pannel ?
 
-
-## How to do new page
-
-Go in the file "route" and define the page and the url (all your php logic will be in this file):
-
-```php
-$app
-    ->get(
-        '/', //your url here
-        function($request, $response)
-        {
-            // View data (data you want in your page)
-            $viewData = [];
-
-            return $this->view->render($response, 'pages/home.twig', $viewData); //the file page you will use for the front
-        }
-    )
-    ->setName('home')
-;
-```
-
-## How do the base/expend/use works
-
-Your file "route" call a file in the folder "pages" where you define your componnent like "content". They will next push those block in "base". You can call exterior blocks with "use".
-
-
+Go to /admin then try to login with :
+* login : admin
+* password : admin
 
 ## Contributing
-* Brunet Florian
-* Bruno Simon
 
-### With the help
-* Jules Guesnon
+### I started with the help of a boiler plate made by
+* [Brunet Florian](https://github.com/FlorianB98/) & [Jules Guesnon](https://github.com/julesguesnon/)
 
-
-Donc forget to tag and to follow the github :ok_hand:

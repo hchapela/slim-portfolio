@@ -12,6 +12,71 @@
     </div>
 </section>
 
+{# ADD PROJECT #}
+<section class="section">
+    <div class="container">
+        <h3 class="title is-size-4">Add project</h3>
+
+        {# Form #}
+        <form action="#" method="POST">
+        {# Login #}
+          <div class="field">
+              <p class="control">
+                  <input 
+                  class="input"
+                  type="text"
+                  placeholder="Title of project"
+                  name="project"
+                  id="project"
+                  >
+              </p>
+          </div>
+          {# Explainations #}
+          <div class="field">
+            <p class="control">
+              <input class="input"
+              type="text"
+              placeholder="Short description"
+              name="explainations"
+              id="explainations"
+              >
+            </p>
+          </div>
+          {# Link #}
+          <div class="field">
+            <p class="control">
+              <input class="input"
+              type="text"
+              placeholder="Link of the project"
+              name="link"
+              id="link"
+              >
+            </p>
+          </div>
+          {# thumbnail #}
+          <div class="field">
+            <p class="control">
+              <input class="input"
+              type="text"
+              placeholder="Link of the thumbnail"
+              name="thumbnail"
+              id="thumbnail"
+              >
+            </p>
+          </div>
+          {# Submit experience #}
+          <div class="field">
+            <p class="control">
+              <button class="button is-primary" type="submit">
+                Add new project
+              </button>
+            </p>
+          </div>
+        </form>
+    </div>
+</section>
+
+{# ADD EXPERIENCE #}
 <section class="section">
     <div class="container">
         <h3 class="title is-size-4">Add experiences</h3>
@@ -52,5 +117,6 @@
         </form>
     </div>
 </section>
+
 
 {% endblock %}

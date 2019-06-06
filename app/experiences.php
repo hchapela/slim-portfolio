@@ -78,9 +78,3 @@ class ExperienceAdd {
         }
     }
 }
-// "
-// INSERT INTO 
-//     projects (name, content)
-// VALUES 
-//     ("Bob", "Bob la fête")
-// "

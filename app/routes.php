@@ -112,8 +112,14 @@ $app
             // Get which user is logged
             $viewData['user'] = $_SESSION['authentified'];
 
+            // Check if its a project or an experience sent
+            if(isset($_POST['project'])) {
+                $addProject = new ProjectAdd($this->db);
+            }
             // Add new experience
-            $addExperience = new ExperienceAdd($this->db);
+            else {
+                $addExperience = new ExperienceAdd($this->db);
+            }
 
             // Reload Page
             return $response->withRedirect($this->router->pathFor('admin'));
@@ -151,13 +157,9 @@ $app
             // View data
             $viewData = [];
             // Get all projects
-            $projects = new ProjectsRequest($this->db);
-
+            $projects = new getProjects($this->db);
             $viewData['projects'] = $projects->allProjects;
-            echo '<pre>';
-            print_r($projects->allProjects);
-            echo '</pre>';
-            exit;
+
             return $this->view->render($response, 'pages/projects.twig', $viewData);
         }
     )
