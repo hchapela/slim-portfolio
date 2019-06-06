@@ -9,6 +9,9 @@ require '../app/settings.php';
 // Initialise Slim
 $app = new \Slim\App(['settings' => $settings]);
 
+// Session
+session_start();
+
 // Services
 require '../app/services.php';
 

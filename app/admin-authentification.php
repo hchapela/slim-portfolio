@@ -56,22 +56,19 @@ class AdminAuthentification {
             }
 
             // Check if password are the same
-            else if($result->password == $_POST['password']) {
-                $this->successLogin();
+            else if(password_verify($_POST['password'], $result->password)) {
+                $this->successLogin($login);
             }
             else {
                 $this->failLogin();
             }
 
-            // Reset login and password
-            $_POST['login'] = '';
-            $_POST['password'] = '';
         }
         
     }
 
-    public function successLogin() {
-        $this->state = true;
+    public function successLogin($_login) {
+        $this->state = $_login;
         $this->messages['success'][] = 'Successfully connected';
     }
 

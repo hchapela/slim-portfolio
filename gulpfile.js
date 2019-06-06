@@ -8,7 +8,6 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleancss = require('gulp-clean-css');
 const imagemin = require('gulp-imagemin');
 const plumber = require('gulp-plumber');
-const browserify = require('gulp-browserify');
 
 /*
 --TOP LEVEL FUNCTIONS
@@ -19,24 +18,23 @@ gulp.watch
 */
 
 gulp.task('scripts', () => {
-    gulp.src('assets/src/scripts/**/*.js')
+    gulp.src('web/assets/src/scripts/**/*.js')
         .pipe(plumber({
             errorHandler: function (error) {
                 console.log(error.message);
                 this.emit('end');
             }
         }))
-        .pipe(browserify())
         .pipe(babel())
         .pipe(concat('script.js'))
-        .pipe(gulp.dest('assets/'))
+        .pipe(gulp.dest('web/assets/'))
         .pipe(rename({ suffix: '.min' }))
         .pipe(uglify())
-        .pipe(gulp.dest('assets/'));
+        .pipe(gulp.dest('web/assets/'));
 });
 
 gulp.task('styles', () => {
-    gulp.src('assets/src/scss/*.scss')
+    gulp.src('web/assets/src/scss/*.scss')
         .pipe(plumber({
             errorHandler: function (error) {
                 console.log(error.message);
@@ -45,24 +43,24 @@ gulp.task('styles', () => {
         }))
         .pipe(sass())
         .pipe(autoprefixer({ browsers: ['last 2 versions'] }))
-        .pipe(gulp.dest('assets/'))
+        .pipe(gulp.dest('web/assets/'))
         .pipe(rename({ suffix: '.min' }))
         .pipe(cleancss())
-        .pipe(gulp.dest('assets/'));
+        .pipe(gulp.dest('web/assets/'));
 });
 
 gulp.task('images', () => {
-    gulp.src('assets/src/img/**/*')
+    gulp.src('web/assets/src/img/**/*')
         .pipe(imagemin())
-        .pipe(gulp.dest('assets/img'));
+        .pipe(gulp.dest('web/assets/img'));
 });
 
 gulp.task('run',['scripts','styles','images']);
 
 gulp.task('watch',() => {
-    gulp.watch('assets/src/img/**/*',['images']);
-    gulp.watch('assets/src/scss/**/*.scss',['styles']);
-    gulp.watch('assets/src/scripts/**/*.js',['scripts']);
+    gulp.watch('web/assets/src/img/**/*',['images']);
+    gulp.watch('web/assets/src/scss/**/*.scss',['styles']);
+    gulp.watch('web/assets/src/scripts/**/*.js',['scripts']);
 });
 
 gulp.task('default',['watch']);

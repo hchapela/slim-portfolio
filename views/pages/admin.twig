@@ -1,7 +1,7 @@
 {% extends "pages/base.twig" %}
 
 {# Menu #}
-{% use "pages/to_use/random_menu.twig" %}
+{% use "pages/to_use/menu.twig" %}
 
 {% block content %}
 
@@ -18,7 +18,6 @@
               placeholder="Login"
               name="login"
               id="login"
-              value="{{ login }}"
               >
               <span class="icon is-small is-left">
                   <i class="fas fa-envelope"></i>
@@ -36,7 +35,6 @@
           placeholder="Password"
           name="password"
           id="password"
-          value="{{ password }}"
           >
           <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>

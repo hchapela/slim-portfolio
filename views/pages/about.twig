@@ -1,7 +1,7 @@
 {% extends "pages/base.twig" %}
 
 {# Menu #}
-{% use "pages/to_use/random_menu.twig" %}
+{% use "pages/to_use/menu.twig" %}
 
 {% block content %}
 <section class="section">
@@ -14,6 +14,16 @@
     {# Experiences #}
     <div class="container">
         <h2 class="subtitle is-uppercase is-size-6 has-text-weight-bold">Experiences</h2>
+        
+            {# Each experience #}
+            {% for _experience in experiences %}
+                <div class="experience">
+                    <p class="is-capitalized has-text-weight-bold">{{_experience.title}}</p>
+                    <p class="has-text-grey is-second-font">{{ _experience.content }}</p>
+                </div>
+            {% endfor %}
+       
+        
     </div>
 </section>
 

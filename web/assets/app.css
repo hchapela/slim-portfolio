@@ -1,0 +1,20 @@
+.is-font-first {
+  font-family: "Montserrat"; }
+
+.is-font-second {
+  font-family: "Titillium Web"; }
+
+html {
+  font-family: "Montserrat"; }
+
+body {
+  font-family: "Montserrat"; }
+
+.container .subtitle {
+  margin-top: 1.8rem; }
+
+a.button {
+  margin: 1.2rem; }
+
+.experience {
+  margin: 1rem; }

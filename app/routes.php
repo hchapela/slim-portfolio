@@ -1,6 +1,8 @@
 <?php
 
 require 'admin-authentification.php';
+require 'projects.php';
+require 'experiences.php';
 
 // Home
 $app
@@ -10,7 +12,7 @@ $app
         {
             // View data
             $viewData = [];
-
+            $viewData['title'] = "Hugo. C";
             return $this->view->render($response, 'pages/home.twig', $viewData);
         }
     )
@@ -44,6 +46,11 @@ $app
         function($request, $response)
         {
             $viewData = [];
+            $viewData['title'] = "Hugo. C | Admin";
+            // Redirect if session already logged
+            if(isset($_SESSION['authentified'])) {
+                return $response->withRedirect($this->router->pathFor('dashboard'));
+            }
             return $this->view->render($response, 'pages/admin.twig', $viewData);
         }
     )
@@ -55,14 +62,17 @@ $app
         '/admin',
         function($request, $response)
         {
-            session_start();
             $viewData = [];
             $auth = new AdminAuthentification($this->db);
             // Check if session is authentified
             if(isset($auth->state)) {
-                // redirect to another page
                 // session with ok
-            } else {
+                $_SESSION['authentified'] = $auth->state;
+                // redirect to another page
+                return $response->withRedirect($this->router->pathFor('dashboard'));
+            } 
+            // If not authentified
+            else {
                 return $this->view->render($response, 'pages/admin.twig', $viewData);
             }
         }
@@ -77,8 +87,36 @@ $app
         {
             // View data
             $viewData = [];
+            // Get which user is logged
+            $viewData['user'] = $_SESSION['authentified'];
 
-            return $this->view->render($response, 'pages/dashboard.twig', $viewData);
+            // Check if authentified
+            if(isset($_SESSION['authentified'])) {
+                return $this->view->render($response, 'pages/dashboard.twig', $viewData);
+            }
+            else {
+                return $response->withRedirect($this->router->pathFor('admin'));
+            }
+        }
+    )
+    ->setName('dashboard')
+;
+
+$app
+    ->post(
+        '/dashboard',
+        function($request, $response)
+        {
+            // View data
+            $viewData = [];
+            // Get which user is logged
+            $viewData['user'] = $_SESSION['authentified'];
+
+            // Add new experience
+            $addExperience = new ExperienceAdd($this->db);
+
+            // Reload Page
+            return $response->withRedirect($this->router->pathFor('admin'));
         }
     )
     ->setName('dashboard')
@@ -92,6 +130,12 @@ $app
         {
             // View data
             $viewData = [];
+            // Get experiences
+            $experiences = new ExperiencesRequest($this->db);
+            $viewData['experiences'] = $experiences->allExperiences;
+            
+
+            // Render
             return $this->view->render($response, 'pages/about.twig', $viewData);
         }
     )
@@ -106,6 +150,14 @@ $app
         {
             // View data
             $viewData = [];
+            // Get all projects
+            $projects = new ProjectsRequest($this->db);
+
+            $viewData['projects'] = $projects->allProjects;
+            echo '<pre>';
+            print_r($projects->allProjects);
+            echo '</pre>';
+            exit;
             return $this->view->render($response, 'pages/projects.twig', $viewData);
         }
     )

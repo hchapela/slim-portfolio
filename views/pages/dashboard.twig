@@ -1,13 +1,55 @@
 {% extends "pages/base.twig" %}
 
 {# Menu #}
-{% use "pages/to_use/random_menu.twig" %}
+{% use "pages/to_use/menu.twig" %}
 
 {% block content %}
 <section class="section">
     {# Introduction #}
     <div class="container">
-       
+       <h1 class="title">Welcome {{ user }}</h1>
+       <p>Welcome to your dashboard</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h3 class="title is-size-4">Add experiences</h3>
+
+        {# Form #}
+        <form action="#" method="POST">
+        {# Login #}
+          <div class="field">
+              <p class="control">
+                  <input 
+                  class="input"
+                  type="text"
+                  placeholder="Title of experience"
+                  name="title"
+                  id="title"
+                  >
+              </p>
+          </div>
+          {# Content #}
+          <div class="field">
+            <p class="control">
+              <input class="input"
+              type="text"
+              placeholder="Short description"
+              name="content"
+              id="content"
+              >
+            </p>
+          </div>
+          {# Submit experience #}
+          <div class="field">
+            <p class="control">
+              <button class="button is-primary" type="submit">
+                Add experience
+              </button>
+            </p>
+          </div>
+        </form>
     </div>
 </section>
 

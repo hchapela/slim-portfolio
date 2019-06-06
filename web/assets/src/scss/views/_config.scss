@@ -9,3 +9,11 @@ $lightGrey : #F1F1F1;
 $primaryFont: 'Montserrat';
 $secondFont: 'Titillium Web';
 
+.is-font-first {
+    font-family: $primaryFont;
+}
+
+.is-font-second {
+    font-family: $secondFont;
+}
+
